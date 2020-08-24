@@ -1,0 +1,37 @@
+<app-not-found *ngIf = "!isResult"
+    [title]="'Please give the Exam'"
+    [description]="
+      'CLick on below button to start the Exam'
+    "
+    [showRedirectBtn]="true"
+    [redirectBtnLabel]="'Start Test'"
+    [redirectUrl]="'/questions'"
+  ></app-not-found>
+  <div class="row m-3" *ngIf = "isResult">
+    <div class="col-md-4">
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Total Questions - {{result.totalAnswered || 0}} </li>
+                <li class="list-group-item">Right Questions - {{result.rightAnswer || 0}} </li>
+                <li class="list-group-item">Wrong Answers - {{result.wrongAnswer || 0}}</li>
+                <li class="list-group-item">Not Attempted - {{result.notAttempted || 0}} </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card" >
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <div *ngFor="let question of result.questions">
+              <li class="list-group-item" >a){{question.question}}</li>
+              <li class="list-group-item {{fontColor}}">a) {{question.a}} <span [innerHTML]="checkCorrectAnswer(question, 'a')"></span></li>
+              <li class="list-group-item {{fontColor}}">b){{question.b}} <span [innerHTML]="checkCorrectAnswer(question, 'b')"></span></li>
+              <li class="list-group-item {{fontColor}}">c){{question.c}} <span [innerHTML]="checkCorrectAnswer(question, 'c')"></span></li>
+              <li class="list-group-item {{fontColor}}">d){{question.d}} <span [innerHTML]="checkCorrectAnswer(question, 'd')"></span></li>
+              <li class="list-group-item">Answer - {{question.answer}}</li>
+            </div>
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>

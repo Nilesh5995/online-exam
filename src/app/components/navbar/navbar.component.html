@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Online Quize</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbarCollapsing()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="navbar-collapse"
+      id="navbarNav"
+      [class.collapse]="navbarCollapsed"
+    >
+      <hr class="mb-4" *ngIf="navbarCollapsed" />
+      <ul class="navbar-nav mr-auto">
+        <li
+          class="nav-item"
+          *ngIf="router.isActive('/questions', true); else Exams"
+        >
+          <a class="nav-link active" routerLink="/questions">Exams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="result" routerLinkActive="active">Result</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="add-questions" routerLinkActive="active">Add Question</a>
+        </li>
+        <ng-template #Exams>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="questions" routerLinkActive="active"
+              >Exams</a
+            >
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </nav>
+  
